@@ -181,16 +181,16 @@ Here are the questions,
 
     Square both sides,
     \begin{equation*}
-        1327t + 250 \gtrsim 40 t^2 \\
-        \Rightarrow 250 \gtrsim t^2 - 30t = (t - 15)^2 - 225
-    \end{equation*}
-    \begin{equation*}
-        500 \gtrsim (t - 15)^2.
+        \begin{split}
+        1327t + 250         &\gtrsim 40 t^2 \\
+            \Rightarrow 6   &\gtrsim t^2 - 30t = (t - 15)^2 - 225\\
+            \Rightarrow 230 &\gtrsim (t - 15)^2.
+        \end{split}
     \end{equation*}
 
-    So roughly before $15 + 22$ seconds is sky-dominated,
+    So roughly before $15 + 15$ seconds is sky-dominated,
     \begin{equation}
-        t \lesssim 37 \, \mathrm{s}.
+        t \lesssim 30 \, \mathrm{s}.
     \end{equation}
 
 
@@ -266,14 +266,19 @@ Here are the questions,
     \lstset{caption={Solve t}}
     \lstset{label={lst:alg1}}
     \begin{lstlisting}[style = python]
+    import sympy as sp
+
+    # construct the signal to noise equation using lambda
     sn = lambda R_s, R_sky, RN, DN, npix, t : 
            R_s * t /
          ( R_s * t + R_sky * t * npix + RN**2 * npix + DN * t * npix )**(1/2)    
+        
+    # solve polynomial with sympy.solve
     expr = sn(6.74, 23.395, 5**(1/2), 1.2, 7**2, t)
     sp.solve(sp.Eq(expr, 20), t)
     \end{lstlisting} 
 
-    and I found $t = 101671$ seconds.
+    and I found $t = 10\,671$ seconds.
 
     \item {\bf Find the exposure time on the HST.}
     

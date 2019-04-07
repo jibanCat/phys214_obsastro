@@ -1,0 +1,298 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+% \usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+% \usepackage{mathrsfs}
+\usepackage{xcolor}
+% \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+
+% define vector
+\newcommand{\q}{\underline}
+
+% define in-line code
+\definecolor{codegray}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
+
+\hypersetup{%
+  colorlinks=true,
+  linkcolor=blue,
+  linkbordercolor={0 0 1}
+}
+
+\renewcommand\lstlistingname{Snippet}
+\renewcommand\lstlistlistingname{Snippet}
+\def\lstlistingautorefname{Snippet.}
+
+\lstdefinestyle{python}{
+    language        = python,
+    frame           = lines, 
+    basicstyle      = \footnotesize,
+    keywordstyle    = \color{violet},
+    stringstyle     = \color{green},
+    commentstyle    = \color{red}\ttfamily
+}
+
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+% Edit these as appropriate
+\newcommand\course{Phys 214}
+\newcommand\hwnumber{1}                  % <-- homework number
+\newcommand\NetIDa{Ming-Feng Ho}           % <-- NetID of person #1
+% \newcommand\NetIDb{netid12038}           % <-- NetID of person #2 (Comment this line out for problem sets)
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{\NetIDa}
+% \lhead{\NetIDa\\\NetIDb}                 % <-- Comment this line out for problem sets (make sure you are person #1)
+\chead{\textbf{\Large Homework \hwnumber}}
+\rhead{\course \\ \today}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+
+\section*{Problem 1}
+
+So let me list some of the values here:
+\begin{itemize}
+    \item $ (R_* \mid X= 1 , m=20, MK
+         ) = 1890 \, \mathrm{e^- / s}$
+    
+    \item $ (m_{sky} \mid MK, m = m_{sky}, r_{pix}) = 20.3 \, 
+    \mathrm{mag/arsec}^2 $
+    
+    \item $ (r_{pix} \mid MK) = 0.135 \, 
+    \mathrm{arcsec/pix} $
+
+    \item $ (RN^2 \mid MK) = 5 \, \mathrm{e^-}$
+    \item $ (G \mid MK) = 1.2 \, \mathrm{e^-/DN}$
+\end{itemize}
+
+Here are the questions,
+
+\begin{enumerate}
+    \item {\bf $R_{sky}$ of detected in R-band?}
+    
+    We knew, 
+    \begin{equation}
+        (R_* \mid X= 1 , m=20, MK) = 1890 \, \mathrm{e^- / s}.
+    \end{equation}
+    Now we took off the condition on $R$ magnitude,
+    \begin{equation}
+        (R_{*} \mid X=1, m, MK) = 1890 \times 
+            10^{ - \frac{m - 20}{ 2.5 } }
+    \end{equation}
+    since $R_{*} \propto 10^{- \mathrm{mag} / 2.5}$.
+
+    Condition on pixel size to get $R_{sky}$ 
+    \begin{equation}
+        \begin{split}
+        (m_{sky} \mid MK, m = m_{sky},) &=  
+            (m_{sky} \mid MK, m = m_{sky}, r_{pix}) - 2.5\log_{10} (r_{pix} \mid MK)^2\\
+            & = 20.3 - 5\times\log_{10}0.135\\
+            &= 24.6 \, \mathrm{mag/pixel}
+        \end{split}
+    \end{equation}
+
+    Use the information of sky magnitude on a pixel to get the 
+    rate of detection on a pixel, which is
+    \begin{equation}
+        \begin{split}
+            (R_{*} \mid X=1, m=m_{sky}, MK) 
+                &= 1890 \times 10^{ - \frac{m_{sky} - 20}{ 2.5 } }\\
+                &= 1890 \times 10^{- ( 24.6 - 20 ) / 2.5} = 26.13 \, \mathrm{e^-/pixel/s}
+        \end{split}
+        \qed
+    \end{equation}
+
+
+    \item {\bf Find $ R_* \mid m=26, X=1.2 $.}
+
+    As suggested by the instructor of fundamental astrophysics- never use
+    magnitude,
+
+    \begin{equation}
+        \begin{split}
+        (R_{*} \mid X=1.2, m=26) 
+            & \propto 10^{- \frac{26 - 20}{2.5}} \times \exp{(-cX)}\\
+            & \propto 10^{- \frac{26 - 20 + kX}{2.5} }\\
+            & \propto 10^{- \frac{26 - 20 + 0.1 * 1.2}{2.5} }.
+        \end{split}
+    \end{equation}
+
+    Remember to bring back your constant
+    \begin{equation}
+        (R_{*} \mid X=1.2, m=26) = 1890
+            \times 10^{ - \frac{26 - 20 + 0.1 * 1.2}{2.5} } 
+            = 6.74 \, \mathrm{e^-/s}.   
+    \end{equation}
+
+
+    \item What's the time range for sky-dominated? Condition on radius of 7 pixels aperture.
+    
+    Since we have more electrons from sky, we need to wait for enough time
+    to reach source-dominated.
+    The effect of sky decrease as $t^{-1/2}$ because there's a t in the 
+    nominator in S/N equation while there's only $t^{1/2}$ in the 
+    denominator.
+    
+    The uncertainty term came from Poisson distribution, which is
+    \begin{equation}
+        \sigma = \sqrt{  
+            R_* t + R_{sky} n_{pix} t + (RN)^2 n_{pix} + DN \times n_{pix} t
+        }
+    \end{equation}
+
+    Though the description in the question is unclear about `7' pixels,
+    (Does it mean it contains 7 pixels or its radius has a range of 7 pixelscales?)
+    I tried both cases and I thought it should be $n_{pix} = 49$. 
+    
+    Therefore,
+    \begin{equation}
+        \begin{split}
+            \sigma &= \sqrt{  
+                R_* t + R_{sky} n_{pix} t + (RN)^2 n_{pix} + DN \times n_{pix} t
+            }\\
+                &= \sqrt{
+                6.74t + 26.13*49*t + 5*49 + 1.2*49*t.
+            }
+        \end{split}
+    \end{equation}
+
+    What we want is sky-dominated, so $\sigma > R_* t = \mathrm{signal}$.
+    Allow me to make some sloppy approximations,    
+    \begin{equation}
+        \begin{split}
+            \sigma &> 6.7 t\\
+            \sqrt{6.74t + 26.13*49*t + 5*49 + 1.2*49*t} &> \\
+            \sqrt{7t + 25*50*t + 250 + 70*t} &\gtrsim \\
+            \sqrt{1327*t + 250 } &\gtrsim \\
+        \end{split}
+    \end{equation}
+
+    Square both sides,
+    \begin{equation*}
+        1327t + 250 \gtrsim 40 t^2 \\
+        \Rightarrow 250 \gtrsim t^2 - 30t = (t - 15)^2 - 225
+    \end{equation*}
+    \begin{equation*}
+        500 \gtrsim (t - 15)^2.
+    \end{equation*}
+
+    So roughly before $15 + 22$ seconds is sky-dominated,
+    \begin{equation}
+        t \lesssim 37 \, \mathrm{s}.
+    \end{equation}
+
+
+    \item {\bf Explain how S/N scale with seeing?}
+    
+    Seeing is cased by the turbulence in the atmosphere.
+    Therefore, the effect of seeing will contribute to the width of PSF.
+    To a first order approximation, let's say $\mathrm{seeing} \propto \sigma_{PSF}$.
+
+    So that we arrive this scaling relation,
+    \begin{equation}
+        n_{pix} \propto r_{measure}^2 
+            \propto \sigma_{PSF}^2 
+            \propto \mathrm{seeing}^2.
+    \end{equation}
+
+    Recall the equation of S/N,
+    \begin{equation}
+        S/N = \frac{ R_* t }{ \sqrt{ R_* t + R_{sky} n_{pix} t + (RN)^2 n_{pix} + DN\times n_{pix} t } }
+    \end{equation}
+
+    Let's make some assumptions and drop those small terms, e.g., 
+    assume the time is long enough to drop RN and we don't care DN.
+
+    So,
+    \begin{equation}
+        \begin{split}
+            S/N &\propto \frac{ R_* }{ \sqrt{ R_* + R_{sky} n_{pix} } }\\
+                &\propto \frac{1}{\sqrt{ 1 + \frac{R_{sky}}{R_*} \mathrm{seeing}^2 }}.
+        \end{split}
+    \end{equation}
+
+    For our case, S/N roughly scales as 
+    \begin{equation}
+        \begin{split}
+            (S/N \mid X=1.2, m_*=26, m_{sky}=20.3, MK)\\
+                 \propto \frac{1}{\sqrt{ 1 + \frac{1}{4} \mathrm{seeing}^2 }}.
+        \end{split}
+    \end{equation}
+
+    \item {\bf What is the exposure time to reach SN = 20?}
+
+    Before solving $ S/N \mid X=1.2, m_{*}-26, m_{sky}=20.3 $, 
+    we need to know $ R_{sky} \mid X=1.2 $.
+    \begin{equation}
+        (R_{sky} \mid X=1.2) = 1890 * 10^{ - \frac{20.3 - 20 + 0.12}{2.5} }
+            \times 0.135^2
+            = 23.395 \, \mathrm{e^- / s}.
+    \end{equation}
+
+    So the problem is just solving,
+    \begin{equation}
+        \begin{split}
+            S/N = 20 
+                &= \frac{ 6.74 t }{ \sqrt{ 6.74t + 23.395*49t + 5*49 + 1.2*49t } }\\
+                &\sim \frac{7t}{\sqrt{7t + 1000t + 250 + 70t}}.
+        \end{split}
+    \end{equation}
+    \begin{equation*}
+        \Rightarrow 1077t + 250 \sim 49 / 400 t^2 \sim 1/8 t^2
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            \Rightarrow t^2 - 8600t - 2000 \sim 0\\
+            \Rightarrow (t - 4300)^2 - 4300^2 \sim 2000\\
+            \Rightarrow t \sim 4300 + \sqrt{ 4300^2 + 2000 } \sim 9000.
+        \end{split}
+    \end{equation*}
+
+    So it's roughly $t \sim 9\,000$ seconds.  
+    I carefully solved it numerically, 
+
+    \lstset{caption={Solve t}}
+    \lstset{label={lst:alg1}}
+    \begin{lstlisting}[style = python]
+    sn = lambda R_s, R_sky, RN, DN, npix, t : 
+           R_s * t /
+         ( R_s * t + R_sky * t * npix + RN**2 * npix + DN * t * npix )**(1/2)    
+    expr = sn(6.74, 23.395, 5**(1/2), 1.2, 7**2, t)
+    sp.solve(sp.Eq(expr, 20), t)
+    \end{lstlisting} 
+
+    and I found $t = 101671$ seconds.
+
+    \item {\bf Find the exposure time on the HST.}
+    
+    I checked this filter and thought it's close enough to R band we used:
+    \url{http://svo2.cab.inta-csic.es/svo/theory/fps3/index.php?id=HST/WFC3_UVIS2.F625W}
+    
+    After plugging those numbers, I got $t = 2059.6179 \sim 2\,000$ seconds. 
+    
+    \item {\bf Try out some parameters you are interested.}
+    
+    \begin{itemize}
+        \item  0.4'' : $\sim 9\,500$ s
+        \item 4''    : $\sim 700\,000$ s
+        \item F600LP : $\sim 1\,000$ s
+        \item 850LP  : $\sim 5\,000$ s
+        \item Narrow 631N : $\sim 120\,000$ s
+        \item Medium F21M : $\sim 5\,000$ s
+    \end{itemize}
+
+\end{enumerate}
+
+\end{document}

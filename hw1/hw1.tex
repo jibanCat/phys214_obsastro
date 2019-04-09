@@ -294,10 +294,62 @@ Here are the questions,
         \item  0.4'' : $\sim 9\,500$ s
         \item 4''    : $\sim 700\,000$ s
         \item F600LP : $\sim 1\,000$ s
-        \item 850LP  : $\sim 5\,000$ s
-        \item Narrow 631N : $\sim 120\,000$ s
-        \item Medium F21M : $\sim 5\,000$ s
+        \item F850LP  : $\sim 5\,000$ s
+        \item Narrow F631N : $\sim 120\,000$ s
+        \item Medium F621M : $\sim 5\,000$ s
     \end{itemize}
+
+    If the aperture is larger, $n_{pix}$ in the denominator would be larger;
+    therefore, longer time to reach $S/N = 20$.
+    But I have no idea why the results of changing filters
+    would be so heterogeneous.
+    Maybe it relates to some intrinsic properties of the filters.
+    
+    So I went back to check the filter table-
+
+    \begin{tabular}{ |p{3cm} || p{3cm}|p{3cm}|p{3cm}| }
+        \hline
+        \multicolumn{4}{|c|}{These are filters :)} \\
+        \hline
+
+        Filter& Transmission&     Width& Exposure Time\\
+        \hline
+
+        F600LP& 0.99        & 4\,000\AA& 1\,000   s   \\
+        F850LP& 0.96        & 1\,500\AA& 5\,000   s   \\
+        F631N & 0.86        &   43.1\AA& 120\,000 s   \\
+        F621M & 0.99        &    631\AA& 5\,000   s   \\
+        F625W & 0.95        &   1575\AA& 2\,000   s   \\
+        \hline
+    \end{tabular}
+
+    The numbers in the table are kind of making sense for me 
+    since I would also expect narrower filters
+    would have longer exposure times.
+    If I am really optimistic, I probably would guess in this way, 
+    \begin{equation}
+        \begin{split}
+            1 / t &\propto E\\
+              &\propto \int_{\lambda_{min}}^{\lambda_{max}} T_{\mathrm{trans}} f_\lambda d\lambda\\
+              &\propto     T_{\mathrm{trans}}  \Delta \lambda / \lambda_{\mathrm{eff}}.
+        \end{split}
+    \end{equation}
+
+    Let me try a few $t * T_{\mathrm{trans}} \Delta \lambda / \lambda_\mathrm{eff}$. 
+    Taking the numbers in the names of filters as $\lambda_\mathrm{eff}$,
+
+    \begin{itemize}
+        \item F600LP: $\sim 1000 * 0.99 * 4000 / 600 \sim 7000$
+        \item F850LP: $\sim 8000$.
+        \item F631N:  $\sim 7000$
+        \item F621M:  $\sim 5000$
+        \item F625W:  $\sim 5000$
+    \end{itemize}
+    
+    It's interesting to see our guess brings those heterogeneous times
+    to the numbers with the same order of magnitude. 
+    I guess by doing the proper integration, I probably could get the 
+    same $1/t$ numbers.
 
 \end{enumerate}
 

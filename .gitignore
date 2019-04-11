@@ -241,3 +241,13 @@ TSWLatexianTemp*
 # generated if using elsarticle.cls
 *.spl
 .vscode
+
+# exclude teacher's files
+*.fits
+Exercise1.pdf
+
+# pyraf craps
+pyraf/
+uparm/
+login.cl
+focus_fit.py

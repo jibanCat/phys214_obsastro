@@ -36,7 +36,7 @@ imhead fintro0001 l+ # see a longer header
   - quit : `q`
 
 - Shift the image frame :
-  - shift fintro0002.fits with (dx, dy) = (-0.56, -1.65) and save the result to s0002.fits `--> imshift fintro0002 s0002 -0.56 -1.65`
+  - shift `fintro0002.fits` with `(dx, dy) = (-0.56, -1.65)` and save the result to `s0002.fits` `--> imshift fintro0002 s0002 -0.56 -1.65`
 
 - Averaging
   - `imsum` : Take an average ![imsum](images/imsum.png)
@@ -90,7 +90,7 @@ imhead fintro0001 l+ # see a longer header
   - interactive cursor mode : `g` 👉 give up : `i`
   - bye bye : `q`
 
-- Remember the how to close IRAF ☺️
+- Remember to close IRAF/PyRAF session ☺️
 
 ```bash
 # in IRAF
@@ -100,11 +100,11 @@ cl> logout (IRAF)
 --> .exit
 ```
 
-n.b. Unfortunately, I was unable to close those little windows that PyRAF opened without my permission. So I terminate the terminal lol
+n.b. Unfortunately, I was unable to close those little windows that PyRAF opened without my permission. So I terminated the terminal lol
 
 ## Q1 : What information does the short header listing contain?
 
-```
+```bash
 --> imhead fintro0001
 
 fintro0001[318,509][real]: M-92 V
@@ -150,7 +150,7 @@ In `--> imexamine`, push your `a` for three times in selected three targets (I p
    9.93  13.42  43047.   43.84   2760. 0.10  -84 4.96     3.34     3.57   3.31
 ```
 
-- So coordinates of fist & second:  
+- So coordinates of two targets:  
 
 | `fintro0001`         | `fintro0002`         | Offsets (`fintro0002` - `fintro0002`) |
 | ------------------ | ------------------ | ---------------------------------- |

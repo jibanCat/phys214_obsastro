@@ -13,3 +13,7 @@
 ```python
 sn = lambda R_s, R_sky, RN, DN, npix, t : R_s * t / ( R_s * t + R_sky * t * npix + RN**2 * npix + DN * t * npix )**(1/2)
 ```
+
+## TUTORIAL : IRAF/PyRAF
+
+https://github.com/jibanCat/phys214_obsastro/tree/master/tutorial1/intro

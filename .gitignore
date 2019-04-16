@@ -246,6 +246,9 @@ TSWLatexianTemp*
 *.fits
 Exercise1.pdf
 
+# exception
+!aver2.fits
+
 # pyraf craps
 pyraf/
 uparm/

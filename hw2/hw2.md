@@ -33,11 +33,29 @@ targets:
 
 ## (a) The best one night could observe all targets
 
-Mar 22 - 26, 2019 would be good enough based on LMST.
+Mar 22 - 26 2020 would be good enough based on local mean sidereal time.
+
+Reason:
+We need to consider a date the would include the RAs of all targets (consider RA to be an approximated time that the target would show up).
+The RAs of our targets range from 9h to 17 hr.
+Current date, Apr 26 2019, is approximated (365 * 19 + 4 * 30 + 26) days away from Jan 1 2000.
+There would be 1 / 15 hour offset from sidereal time for each day.
+So the offset of hours at Apr 26 is around (365 * 19 + 4 * 30 + 26) * 15 % 24 ~ 16 hour.
+It means the conversion from LMST 9h to local time is 17h.
+The desired time is around two or three hours later in local time.
+So the sidereal time should be lower for around two or three hours.
+Convert to days, (2 or 3) * 15 ~ (30 or 45) days, which means it's around one month earlier next year.
+So Mar 26 would be good enough.
+After checking with iObserve, Mar 22-26 2020 would be the ideal week.
 
 ## (b) Assume that you have been granted one night during the week that you requested, so now you have to prepare for your run. Print an airmass chart for all the targets during that night
 
 See the pic.
+
+![](https://i.imgur.com/tdO4Ziy.png)
+![](https://i.imgur.com/05SCnFf.png)
+![](https://i.imgur.com/QaYz14a.png)
+
 Air mass chart is on the left hand side, shaded area is the airmass threshold ~ 3.
 White line is moon.
 Orange lines are targets.
@@ -505,4 +523,35 @@ def generate_schedule(local_time_list, local_mean_sidereal_time_list):
 
 ## (g) Just like you did in your last homework, play with a few of the parameters of the online calculator to see how they affect the S/N. In particular, describe how binning, seeing, slitwidth, and airmass affect your S/N. Imagine that the seeing is 0.7 arcseconds at the beginning of the night, but at some point it suddenly jumps to 1.5 arcseconds (this does happen!) What would you adjust in your observations to maintain as high a S/N as possible without having to increase the exposure time?
 
+- Seeing ↑ , then S/N ↓
+- Binning ↑, then S/N ↑
+- Slitwidth ↑, then S/N ↑
+- Grism changed, no so much change in S/N, but the shape of spectrum changed
+- Grating changed, then S/N ↓
+
+So increase binning pixel would be a way to go.
+It makes sense because you adding more photons per pixel.
+But I think the trade-off is you lose the resolution in your spectrum.
+
+Increasing the slitwidth would also be a choice to increase S/N.
+But increase slitwidth would also lose resolution.
+We should be careful about finding an acceptable resolution based on changing slitwidth and binning pixel.
+
 ## (h) Go back to NED and look up one of the targets. Explore all the information that NED gives you. What was one particular piece of information (other than coordinates, magnitudes, and classification) that you found interesting or helpful?
+
+First object,
+
+```python
+from astroquery.ned import Ned
+
+obj = Ned.query_object("RIXOS F236_021")
+print(obj)
+```
+
+```cs
+No.   Object Name        RA        DEC     Type  Velocity   Redshift  Redshift Flag Magnitude and Filter Separation
+                      degrees    degrees          km / s                                                   arcmin
+--- ---------------- ---------- ---------- ---- ---------- ---------- ------------- -------------------- ----------  
+1 LQAC 255+051 002  255.15071   51.80739    G   338166.0      1.128                              18.90         --  
+
+```

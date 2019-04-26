@@ -1,20 +1,9 @@
 # Phys 214 HW 2
 
-I will be using the web version of `iObserve` in the homework, it's called https://www.arcsecond.io/iobserve, currently in beta version.  
-I haven't used `iObserve` before, but I heard it's very handy because it integrates : airmass charts, finding chart, night log together, and also connect to other oneline catalogue database.  
+I will be using the web version of `iObserve` in this homework, it's called https://www.arcsecond.io/iobserve. It's currently in beta version.  
+I haven't used `iObserve` before, but I heard it's a very handy app because it includes : airmass charts, finding chart, night log, and also connect to other oneline catalogue database.
 
-Notes:
-- Prepare star lists in the appropriate format, with accurate coordinates
-- Create airmass plots for your targets
-- Prepare finder charts
-- Use the Astronomical Sky Calendar to devise a detailed
-observing plan (timeline)
-- Prepare quick reduction software
-- Plan ahead how you will back up your data (is there an
-online archive? Do you need to make enough room in
-your computer or bring an external drive? etc)
-
-targets:
+## Targets:
 
 ```cs
 # all targets
@@ -36,16 +25,16 @@ targets:
 Mar 22 - 26 2020 would be good enough based on local mean sidereal time.
 
 Reason:
-We need to consider a date the would include the RAs of all targets (consider RA to be an approximated time that the target would show up).
-The RAs of our targets range from 9h to 17 hr.
+We need to consider a date the would include the RAs of all targets (consider RA to be an approximated time that the target would show up).  
+The RAs of our targets range from 9h to 17 hr.  
 Current date, Apr 26 2019, is approximated (365 * 19 + 4 * 30 + 26) days away from Jan 1 2000.
 There would be 1 / 15 hour offset from sidereal time for each day.
-So the offset of hours at Apr 26 is around (365 * 19 + 4 * 30 + 26) * 15 % 24 ~ 16 hour.
-It means the conversion from LMST 9h to local time is 17h.
-The desired time is around two or three hours later in local time.
-So the sidereal time should be lower for around two or three hours.
-Convert to days, (2 or 3) * 15 ~ (30 or 45) days, which means it's around one month earlier next year.
-So Mar 26 would be good enough.
+So the offset of hours at Apr 26 is around (365 * 19 + 4 * 30 + 26) * 15 % 24 ~ 16 hour.  
+It means the conversion from LMST 9h to local time is 17h.  
+The desired time is around two or three hours later than 17h local time.  
+So the sidereal time should be lower for around two or three hours.  
+Convert to days, (2 or 3) * 15 ~ (30 or 45) days, which means it's around one month earlier next year.  
+So Mar 26 would be good enough.  
 After checking with iObserve, Mar 22-26 2020 would be the ideal week.
 
 ## (b) Assume that you have been granted one night during the week that you requested, so now you have to prepare for your run. Print an airmass chart for all the targets during that night
@@ -53,13 +42,13 @@ After checking with iObserve, Mar 22-26 2020 would be the ideal week.
 See the pic.
 
 ![](https://i.imgur.com/tdO4Ziy.png)
+Air mass chart is on the left hand side, shaded area is the airmass threshold ~ 3.  
+White line is moon.  
+Orange lines are targets.  
+X-axis is local time.
+
 ![](https://i.imgur.com/05SCnFf.png)
 ![](https://i.imgur.com/QaYz14a.png)
-
-Air mass chart is on the left hand side, shaded area is the airmass threshold ~ 3.
-White line is moon.
-Orange lines are targets.
-X-axis is local time.
 
 ## (c) Print (well, save to a PDF file) a 10’x10’ finderchart for each of the targets. Most guide cameras have CCDs that are more sensitive in the red (about R band), so choose the filter for your finder charts accordingly. Make sure that your target is clearly visible in your finderchart. If there are several targets near the center, mark your target. If your target is not visible, make sure you indicate the spot where your target should be. You can use DSS or SDSS or any of the tools available at the Keck website
 
@@ -92,6 +81,8 @@ Open the Aladin View in iObserve: Filter-- select DSS2 RED
 - RBS 1303 :
 ![](https://i.imgur.com/rdJyExN.jpg)
 
+Oh no, I forgot to fix the size to 10'x10'.
+
 ## (d) Choose three spectrophotometric standards that you can observe during the night. Choose them so that they will fit better in your overall plan (later in the quarter we will learn how to pick stars that are better suited for your observations). Avoid stars brighter than about R = 7 (they may saturate too quickly) or fainter than R=14 (you want to get lots of photons in a short time). You can choose them from this list: http://www2.keck.hawaii.edu/inst/common/flux_stds.html Note that if standard stars are bright, you can observe them during twilight
 
 I think ~1 to ~1.5 hour earlier than the earliest target would be fine with we want to observe it during twilight. Potential standards selected from RA are:
@@ -115,9 +106,10 @@ The best choice of mine is `BD+08° 2015`, the reasons are,
 - It's bright (R = 10.1) so we may observe during twilight
 - The DEC is similar to other targets, so I think it's less effort for telescope to point to the next target
 
-The other two could be, `BD+75° 325` and `L745-46A`.
-`BD+75° 325` is not as high as `BD+08° 2015` in the sense of altitude, but it's bright enough.
-`L745-46A` is not as bright as the others, but the altitude is in the middle between the other two.
+The other two could be, `BD+75° 325` and `L745-46A`.  
+
+- `BD+75° 325` is not as high as `BD+08° 2015` in the sense of altitude, but it's bright enough.  
+- `L745-46A` is not as bright as the others, but the altitude is in the middle between the other two.
 So it could be a backup if the telescope has some troubles to get too low or too high.
 
 Here is the plot of standards,
@@ -153,16 +145,20 @@ RBS 1303                     13 41 12.88 -14 38 40.2
 # crowded area should include nearby sources
 ```
 
-I feel some people may have a better way to automate this thing, but I tried in this way:
-`astroquery.ned` 👉 specify objects in nearby region with some radius 👉 extract RA/DEC attributes from `astroquery.table.table.Table` class 👉 convert RA/DEC to proper unit (hh:mm:ss deg:arcmin:arcsec) 👉 string methods to convert to Keck starlist format.
+I feel some people may have a better way to automate this thing, but I tried in this way:  
+`astroquery.ned` 👉  
+specify objects in nearby region with some radius 👉  
+extract RA/DEC attributes from `astroquery.table.table.Table` class 👉  
+convert RA/DEC to proper unit (hh:mm:ss deg:arcmin:arcsec) 👉  
+string methods to convert to Keck starlist format.
 
-A small function handle generate starlist for nearby source,
+A small function handles the starlist format for nearby sources,
 
 ```python
 def nearby2starlist(target_list, radius=30, equinox=2000):
     '''
-    query targets in a list and search nearby objects 
-    print in Keck's starlist format 
+    query targets in a list and search nearby objects
+    print in Keck's starlist format
 
     Parameters:
     ----
@@ -171,7 +167,7 @@ def nearby2starlist(target_list, radius=30, equinox=2000):
 
     Returns:
     ----
-    starlist    (str)   : Keck style starlist for nearby objects 
+    starlist    (str)   : Keck style starlist for nearby objects
     '''
     starlist = []
     for target_name in target_list:
@@ -191,7 +187,7 @@ def nearby2starlist(target_list, radius=30, equinox=2000):
         all_ras       = all_ras[ind]
         all_decs      = all_decs[ind]
         all_obj_names = all_obj_names[ind]
-        
+
         # convert deg to hh:mm:ss
         all_ras_hrs   = [ deg2RA(deg) for deg in all_ras ]
         all_dec_segs  = [ deg2deg_arcmin_arcsec(deg) for deg in all_decs ]
@@ -210,10 +206,10 @@ def nearby2starlist(target_list, radius=30, equinox=2000):
 
         starlist.append("\n".join(this_starlist))
 
-        print("\n".join(this_starlist))            
+        print("\n".join(this_starlist))
         print("\n")
 
-    
+
     return starlist
 ```
 
@@ -365,7 +361,7 @@ JD20002GMST = lambda d :  24110.54841 + 8640184.812866 * (d / 36525) \
 def LT2LMST(year, month, day, hh, mm, ss, offset_mm=-21, offset_ss=-53):
     '''
     convert local time to local mean sidereal time
-    
+
     Parameters:
     ----
     year  (int)
@@ -377,7 +373,7 @@ def LT2LMST(year, month, day, hh, mm, ss, offset_mm=-21, offset_ss=-53):
 
     offset_mm (int) : offset mm due to longitude of the observatory, east longitude
     offset_ss (int) : offset ss due to longitude of the observatory, east longitude
-    
+
     Return:
     ----
     LMST  (tuple) :  (hh, mm, ss)
@@ -395,7 +391,7 @@ def LT2LMST(year, month, day, hh, mm, ss, offset_mm=-21, offset_ss=-53):
 
     # calc offset in secs within a day
     delta_secs  = JD20002GMST(delta_days)
-    
+
     # consider the longitude of the observatory
     delta_secs  += offset_mm * 60 + offset_ss
 
@@ -411,7 +407,7 @@ def LT2LMST(year, month, day, hh, mm, ss, offset_mm=-21, offset_ss=-53):
     ss          = (new_ss % 60)
     mm          = (new_mm + (new_ss // 60)) % 60
     hh          = (new_hh + (new_mm + (new_ss // 60)) // 60) % 24
-    
+
     return hh, mm, ss
 ```
 
@@ -439,9 +435,9 @@ def generate_schedule(local_time_list, local_mean_sidereal_time_list):
         schedule_list.append(row_str)
 
     schedule_str = "\n".join( schedule_list )
-    
+
     print(schedule_str)
-    
+
     return schedule_str
 ```
 
@@ -535,11 +531,11 @@ But I think the trade-off is you lose the resolution in your spectrum.
 
 Increasing the slitwidth would also be a choice to increase S/N.
 But increase slitwidth would also lose resolution.
-We should be careful about finding an acceptable resolution based on changing slitwidth and binning pixel.
+We should be careful about finding an acceptable resolution while changing slitwidth and binning pixel.
 
 ## (h) Go back to NED and look up one of the targets. Explore all the information that NED gives you. What was one particular piece of information (other than coordinates, magnitudes, and classification) that you found interesting or helpful?
 
-First object,
+First object:
 
 ```python
 from astroquery.ned import Ned
@@ -555,3 +551,20 @@ No.   Object Name        RA        DEC     Type  Velocity   Redshift  Redshift F
 1 LQAC 255+051 002  255.15071   51.80739    G   338166.0      1.128                              18.90         --  
 
 ```
+
+I did not particularly found interesting thing in the above query, but this object is the object with the highest redshift in all targets.
+One thing I noticed is that the object types are not quite agree with each other in the cross-ids,
+
+```cs
+Object Name,                  Object Type
+LQAC 255+051 002,             G
+RIXOS F236_021,               G
+RX J170035.8+514830,          XrayS
+1WGA J1700.5+5148,            XrayS
+[VCV2001] J170036.2+514826,   QSO
+```
+
+I guess they are all correct.
+It's just because the way people found it were different.
+
+The SED plot should be useful; However, there're too few data points there, so it's hard to see the overall SED.

@@ -14,7 +14,6 @@
 
 ![](https://ned.ipac.caltech.edu/level5/March18/Hickox/Figures/figure1.jpg)
 
-
 ## Absorption
 
 stars, galaxies, IGM, atmosphere
@@ -24,14 +23,15 @@ Saha-Boltzmann equation
 - Galaxies : looks like the spectrum of the dominated type of stars
 
 - Natural line boardening : Heisenberg uncertainty. Lorentzian
-- Doppler broadening      : absorptions. Gaissian 
-- Collisional broadening  : leads to Lorentzian
+- Doppler broadening      : absorptions. Gaissian
+- Collisitional broadening  : leads to Lorentzian
 
 - Voigt Profile
 - P-Cygni Profile
 
-- Equvilant width 
+- Equitant width
 
 ## Emission
 
-
+- Emission lines
+- 

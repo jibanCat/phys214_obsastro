@@ -96,6 +96,8 @@ df_tab.columns = cols.loc[:, 0].values
 # series of plottings
 plt.figure()
 plt.errorbar(df_tab.SMA, df_tab.INTENS, yerr=df_tab.INT_ERR)
+plt.xscale("log")
+plt.yscale("log")
 plt.xlabel("SMA")
 plt.ylabel("INTENS")
 plt.savefig("images/SMA-INTENS-{}.png".format(input_filename.replace(".fits","")))

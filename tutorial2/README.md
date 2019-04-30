@@ -171,7 +171,7 @@ residual = image - res.x[0] * model
 
 - **2. Compare plot b) above with Figure 1 of the “Instructions on using GALFIT” (https://users.obs.carnegiescience.edu/peng/work/galfit/README.pdf) , which shows Sersic profiles with different indices. Based on what you observe, do you think the galaxy you modeled is a pure elliptical galaxy? If not, how would you describe it?**
 
-Comparing my plot (b) and Figure 1 in the GALFIT paper, my fitting thinks it is an elliptical galaxy (with Sersic index > 8).
+Comparing my plot (b) and Figure 1 in the GALFIT paper, my fitting thinks it is an elliptical galaxy (with Sersic index ~ 1).
 
 - **3. Inspect plots c) and d). How do these plots inform your answer to question 2? Or do they?**
 
@@ -181,7 +181,8 @@ I think there's an inner bulge-like thing within my fitted ellipse profile.
 - **4. Is this galaxy disky or boxy?**
 
 It's hard to tell since my fitting is noisy.
-Based on observeing the inner part, I think it is disky.
+And the B4 plot is too noisy to tell anything useful.
+But based on observing the inner part, I think it is disky.
 
 ## PyRAF Module
 

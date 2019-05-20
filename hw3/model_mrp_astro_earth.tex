@@ -1,0 +1,29 @@
+% model_mrp_astro_earth.tex : the model for multilevel regression and poststratification
+% in astro phys214 proposal panel
+% using https://github.com/jluttine/tikz-bayesnet
+
+% mrp model
+
+\begin{tikzpicture}
+
+    % cell-level nodes
+    \node[obs] (y) {$y_{ij}$};
+    \node[latent, above=of y, xshift=-2cm] (b_gender)   {$b_{ij}^{\mathrm{gender}}$};
+    \node[latent, above=of y, xshift=-0cm] (b_sim_obs)  {$b_{ij}^{\mathrm{sim/obs}}$};
+    \node[latent, above=of y, xshift=2cm]  (b_interest) {$b_{ij}^{\mathrm{interest}}$};
+
+    % group-level nodes
+    \node[latent, above=of b_sim_obs, xshift=-2cm] (b_depart) {$b_{j}^{\mathrm{department}}$};
+
+    \node[latent, left=of y, xshift=-2cm] (b_0) {$b_{0}$};
+    
+    % the connection
+    \edge {b_gender, b_sim_obs, b_interest} {y};
+    \edge {b_depart}                        {y};
+    \edge {b_0}                             {y};
+
+    % repetition plates
+    \plate {cell} {(y)(b_gender)(b_sim_obs)(b_interest)} {$i = 1:N$};
+    \plate {group} {(y)(b_gender)(b_sim_obs)(b_interest)(b_depart)(cell)} {$j \in \{\text{astro or earth}\}$};
+
+\end{tikzpicture}

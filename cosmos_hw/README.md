@@ -137,8 +137,84 @@ And the result shows l increase a little at first peak and a lot at second and t
 
 **b) Now, keeping Ωbh2 fixed, set H0 = 75 km/s/Mpc and thus change Ωb.**
 
+```bash
+python camb_change_baryon.py
+```
+
 ![](images/change_H0.png)
 
 As shown in the Fig, increase H0 would shift the peak positions to larger scales.
 It makes sense since if the expansion rate is larger than the structure would be larger.
 
+## Prob 2.4 Curvature
+
+**a) Write code to generate a CMB temperature power spectrum for a closed universe with |ΩK| = 0.1.
+Keep ΩMh2, H0 and Ωbh2 constant and vary ΩL**
+
+```
+python camb_change_curvature.py
+```
+
+```python
+    params.set_cosmology(
+        H0=67.4, ombh2=0.022383,
+        omch2=0.122011, omk=omk, tau=0.0543)
+    params.InitPower.set_params(
+        As=np.exp(3.0448) * 1e-10, ns=0.96605)
+```
+
+![](images/change_curvature.png)
+
+![](images/change_curvature_negative.png)
+
+**b) Explain the changes between these two power spectra**
+
+Increase curvature would move peaks to smaller scales.
+It makes sense since if the space is more curved then there would be more small scale structures.
+
+Changing dark energy density is equal to changing ΩK to negative so I just plot negative ΩK instead of ΩL.
+The reason is that universe would become negative curved if we do not take into account the missing energy- the dark energy.
+
+## Prob 2.5 Massive Neutrinos and the CMB power spectrum
+
+**a) Write code to generate a theoretical primary CMB temperature power spectrum with the default cosmological parameters, but a total neutrino mass (in three neutrino species) of Σm ν = 1 eV.**
+
+Slight modification again,
+
+```python
+    # setup six init params from the paper
+    params = camb.CAMBparams() # the obj stores params
+    params.set_cosmology(
+        H0=67.4, ombh2=0.022383,  
+        omch2=0.122011, omk=0, tau=0.0543,
+        mnu=mnu, neutrino_hierarchy='degenerate')
+    params.InitPower.set_params(
+        As=np.exp(3.0448) * 1e-10, ns=0.96605)
+```
+
+and run (range mν from 0eV ~ 1eV)
+
+```bash
+python cmb_change_neutrino.py
+```
+
+![](images/change_neutrino.png)
+
+Note:
+- normal hierarchy, where m1 < m2 << m3
+- inverted hierarchy, where m1 = m2 >> m3
+- degenerate, where m1 = m2 = m3
+
+**b) Plot this CMB power spectrum on the same graph as the default power spectrum from Problem 2.2 and explain the differences between them.**
+
+The line with mν = 0 is the default power spectrum.
+
+It seems to shift the power spectrum to larger scales and suppress the amplitude in first peak a little.
+
+Adding more neutrino to universe would shift the matter-radiation equality epoch and would also supress the growth of perturbations.
+
+I think because neutrino would contribute to radiation density.
+The matter-radiation equality happens later.
+So the general trend of power spectrum shifts to larger scales.
+
+Also, the free-streaming of the neutrino would suppress the growth of the structures in small scales.

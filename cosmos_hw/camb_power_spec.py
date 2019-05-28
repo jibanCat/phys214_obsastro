@@ -1,6 +1,14 @@
+import os
 import numpy as np
 import camb
 from matplotlib import pyplot as plt
+
+if not os.path.exists("COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum-theory_R3.01.txt"):
+    import urllib.request as request
+    request.urlretrieve(
+        "http://pla.esac.esa.int/pla/aio/product-action?COSMOLOGY.FILE_ID=COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum-theory_R3.01.txt",
+        "COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum-theory_R3.01.txt"
+    )
 
 # setup six init params from the paper
 params = camb.CAMBparams() # the obj stores params

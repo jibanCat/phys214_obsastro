@@ -117,8 +117,28 @@ The plot:
 
 ![](images/power_spec.png)
 
-** b) Compare this result to Figure 1 of https://arxiv.org/abs/1807.06209. Do your results look similar?**
+**b) Compare this result to Figure 1 of https://arxiv.org/abs/1807.06209. Do your results look similar?**
 
 Yes.
 
 ## Prob 2.3 Baryons in the CMB
+
+**a) Increase Ωbh2 , while keeping H0 fixed, so that Ωb changes.**
+
+Result: first peak becomes higher, second & third peak shifts to smaller scales.  
+
+The first peak position is not changed a lot because the universe fixed at flat curvature.  
+Since Ωb increases, the sound speed (cs) decreases.
+Because l ∝ current horizon / sound speed horizon ∝ 1 / cs  
+So that I expected l would increases.
+And the result shows l increase a little at first peak and a lot at second and third peak.
+
+![](images/change_baryon.png)
+
+**b) Now, keeping Ωbh2 fixed, set H0 = 75 km/s/Mpc and thus change Ωb.**
+
+![](images/change_H0.png)
+
+As shown in the Fig, increase H0 would shift the peak positions to larger scales.
+It makes sense since if the expansion rate is larger than the structure would be larger.
+

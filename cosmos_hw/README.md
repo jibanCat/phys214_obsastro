@@ -6,8 +6,8 @@ Briefly explain the meaning of each of the six base cosmological parameters.
 
 For the six base parameters in Table 1 (the following description is according to 2.1 section in the paper):
 
-1. Ωbh² : baryon density of the universe, defined as Ωb = ρb/ρcrit, where ρcrit is critical density. The h here defined as h ≡ H0 / (100 kms⁻¹ Mpc⁻¹).
-2. Ωch² : cold dark matter density.
+1. Ωbh² : baryon density of the universe, defined as Ωb = ρb/ρcrit, where ρcrit is critical density. The h here defined as h ≡ H0 / (100 kms⁻¹ Mpc⁻¹).
+2. Ωch² : cold dark matter density.
 3. 100θMC: an approximation to the observed angular size of the sound horizon at recombination.
 4. τ : optical depth at reionization.
 5. ln(10¹⁰ As): initial super-horizon amplitude of curvature perturbations (at k = 0.05 Mpc⁻¹).
@@ -92,7 +92,7 @@ import classy
 # and nothing happened
 ```
 
-Since it sneakly installed the classy package, it's not recorded in `Pipfile`.
+Since it sneakily installed the classy package, it's not recorded in `Pipfile`.
 
 ## Prob 2.2 Power Spectrum
 
@@ -127,13 +127,13 @@ Yes.
 
 **a) Increase Ωbh2 , while keeping H0 fixed, so that Ωb changes.**
 
-Result: first peak becomes higher, second & third peak shifts to smaller scales.  
+Result: the first peak becomes higher, second & third peak shifts to smaller scales.  
 
 The first peak position is not changed a lot because the universe fixed at flat curvature.  
 Since Ωb increases, the sound speed (cs) decreases.
-Because l ∝ current horizon / sound speed horizon ∝ 1 / cs  
+Because of l ∝ current horizon / sound speed horizon ∝ 1 / cs  
 So that I expected l would increases.
-And the result shows l increase a little at first peak and a lot at second and third peak.
+Moreover, the result shows l increase a little at first peak and a lot at second and third peak.
 
 ![](images/change_baryon.png)
 
@@ -145,7 +145,7 @@ python camb_change_baryon.py
 
 ![](images/change_H0.png)
 
-As shown in the Fig, increase H0 would shift the peak positions to larger scales.
+As shown in Fig, increase H0 would shift the peak positions to larger scales.
 It makes sense since if the expansion rate is larger than the structure would be larger.
 
 ## Prob 2.4 Curvature
@@ -172,10 +172,10 @@ python camb_change_curvature.py
 **b) Explain the changes between these two power spectra**
 
 Increase curvature would move peaks to smaller scales.
-It makes sense since if the space is more curved then there would be more small scale structures.
+It makes sense since if space is more curved then there would be more small scale structures.
 
-Changing dark energy density is equal to changing ΩK to negative so I just plot negative ΩK instead of ΩL.
-The reason is that universe would become negative curved if we do not take into account the missing energy- the dark energy.
+Changing dark energy density is equal to changing ΩK to negative, so I plot negative ΩK instead of ΩL.
+The reason is that the universe would become negatively curved if we do not take into account the missing energy- the dark energy.
 
 ## Prob 2.5 Massive Neutrinos and the CMB power spectrum
 
@@ -213,10 +213,10 @@ The line with mν = 0 is the default power spectrum.
 
 It seems to shift the power spectrum to larger scales and suppress the amplitude in first peak a little.
 
-Adding more neutrino to universe would shift the matter-radiation equality epoch and would also supress the growth of perturbations.
+Adding more neutrino to the universe would shift the matter-radiation equality epoch and would also suppress the growth of perturbations.
 
 I think because neutrino would contribute to radiation density.
-The matter-radiation equality happens later.
+Matter-Radiation equality happens later.
 So the general trend of power spectrum shifts to larger scales.
 
 Also, the free-streaming of the neutrino would suppress the growth of the structures in small scales.
@@ -231,7 +231,7 @@ python camb_matter_power.py
 # Sigma 8 is 0.82
 ```
 
-Basically used the following lines to compute
+Basically use the following lines to compute
 
 ```python
 # compute linear spectrum
@@ -247,7 +247,7 @@ sigma_8 = results.get_sigma8()
 
 **b) Calculate σ 8 for this power spectrum using CAMB and explain what σ 8 means.**
 
-The σ8 is 0.82. The σ8 is the measure of amplitude on the linear power spectrum at scale of 8 h⁻¹Mpc.
+The σ8 is 0.82. The σ8 is the measure of amplitude on the linear power spectrum at a scale of 8 h⁻¹Mpc.
 
 ## Prob 2.7 The Linear Growth Function
 
@@ -299,8 +299,8 @@ python camb_non_linear_spectrum.py
 
 ![](images/non_linear_matter_power.png)
 
-If we consider non-linear contribution to the structure, then there would be more small structures there in the universe.
-And the number of small structures would increase with the evolution of the universe; therefore, we find more power in the small scales for the lower redshifts.
+If we consider a non-linear contribution to the structure, then there would be more small structures there in the universe.
+Also, the number of small structures would increase with the evolution of the universe; therefore, we find more power in the small scales for the lower redshifts.
 
 ## Problem 2.8 Massive Neutrinos and the Matter Power Spectrum
 
@@ -325,14 +325,14 @@ This is what I get,
 As shown in previous plot.
 
 On the largest scales, the perturbations basically are not affected by free-streaming neutrino, which implies the effect of neutrino could be considered similar to CDM.
-While there exists a power shift at large scales between change Ωcdm or not change it.
+While there exists a power shift at large scales between change Ωcdm or not change it.
 This implies the large scales only depend on the fraction of matter in the universe instead of neutrino mass.
 
 On the small scale side, there's a noticeable suppression on the amplitude.
-This means the increasing amount of free-streaming neutrino would suppress the small structure growth, and reflects itself on the matter power spectrum.
+This means the increasing amount of free-streaming neutrino would suppress the small structure growth and reflects itself on the matter power spectrum.
 It makes sense since if we consider the matter power spectrum includes the neutrino,
 
-P(k) ∝ < |Ωcdm δcdm + Ωb δb + Ων δν| >.
+P(k) ∝ < |Ωcdm δcdm + Ωb δb + Ων δν| >.
 
 On the small scales, the current day δcdm and δb would be similar while δν would be smaller than δcdm (means no neutrino halo or cluster).
 In general, the power would be reduced.
@@ -341,7 +341,7 @@ In general, the power would be reduced.
 
 - Default σ8 = 0.82
 - Add neutrino, σ8 = 0.68
-- Add neutrino, change Ωcdm, σ8 = 0.63
+- Add neutrino, change Ωcdm, σ8 = 0.63
 
 ## Problem 2.9 The Baryon Acoustic Oscillation Feature
 
@@ -361,9 +361,9 @@ Fit the wiggles by my eyes, I think,
 
 But the right scale for BAO is 150 Mpc.
 
-And the peak in my plot is very unobvious, which implies I might did something wrong.
+And the peak in my plot is very unobvious, which implies I might do something wrong.
 
-I spend 6 hours on this single question, I should move on.
+I've spent 6 hours on this single question. I should move on.
 
 **b) Identify the same feature in the CMB power spectrum. What is the scale of this feature in comoving Mpc in the CMB?**
 
@@ -382,7 +382,7 @@ Fitted by my eyes, I think
 
 **d) Explain why measuring the Baryon Acoustic Oscillation scale is useful for cosmology.**
 
-Because the size of BAO only depends the physics (model) we used,
+Because the size of BAO only depends on the physics (model) we used,
 it would be a nice cosmic ruler to determine the expansion of the universe
 So we can measure the expansion between recombination and today.
 It would help us to better constrain the accelerating expansion and the property of dark energy.

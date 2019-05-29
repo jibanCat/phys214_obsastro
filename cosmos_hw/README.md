@@ -275,7 +275,8 @@ To take the ratio, I just doing this D = 1/N Σ ( Pk(z = z2) / Pk(z = z1) ).
 
 **c) Compute the linear growth function between these redshifts analytically for a matter-dominated universe and a Λ-dominated universe.**
 
-TBD
+<img src="images/IMG_4927.jpg" width=600>
+<!-- ![](images/IMG_4927.jpg) -->
 
 **d) Using Halofit, compute the non-linear matter power spectrum at z = 0, 1, 2, 9.**
 

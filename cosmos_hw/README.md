@@ -344,3 +344,58 @@ In general, the power would be reduced.
 
 ## Problem 2.9 The Baryon Acoustic Oscillation Feature
 
+**a) From the matter power spectrum for the default cosmology, identify the Baryon Acoustic Oscillation feature. What is the scale of this feature in comoving Mpc?**
+
+Run `python camb_bao.py`,
+
+![](images/bao_129.png)
+
+I did not get the right scale.
+The first turn-over peak corresponds to ~0.017 h/Mpc ~ 0.01/Mpc ~ 2π / 0.01 Mpc = 628 Mpc, which is the horizon size at matter-radiation equality.
+The following wiggles should be BAO.
+Fit the wiggles by my eyes, I think,
+
+- The first wiggle ~ 125 Mpc
+- The second wiggle ~ 75 Mpc
+
+But the right scale for BAO is 150 Mpc.
+
+And the peak in my plot is very unobvious, which implies I might did something wrong.
+
+I spend 6 hours on this single question, I should move on.
+
+**b) Identify the same feature in the CMB power spectrum. What is the scale of this feature in comoving Mpc in the CMB?**
+
+- For first peak, L = scale = 1.4*10^4 Mpc * π/220 = 199 Mpc.
+- For second peak, L = scale = 1.4*10^4 Mpc * π/530 = 83 Mpc
+
+(1.4*10^4 is the particle horizon size)
+
+**c) Identify the same feature in the z = 1, 2, 9 matter power spectra, giving the scale in comoving Mpc at each redshift.**
+
+Fitted by my eyes, I think
+
+- for z = 1 : first wiggle ~ 125 Mpc
+- for z = 2 : first wiggle ~ 120 Mpc
+- for z = 9 : first wiggle ~ 110 Mpc
+
+**d) Explain why measuring the Baryon Acoustic Oscillation scale is useful for cosmology.**
+
+Because the size of BAO only depends the physics (model) we used,
+it would be a nice cosmic ruler to determine the expansion of the universe
+So we can measure the expansion between recombination and today.
+It would help us to better constrain the accelerating expansion and the property of dark energy.
+
+Reference:
+
+- neutrino :
+  - https://arxiv.org/pdf/1309.5383.pdf 
+  - https://arxiv.org/pdf/1212.6154.pdf
+- BAO :
+  - http://w.astro.berkeley.edu/~mwhite/bao/
+  - https://arxiv.org/pdf/1105.1514.pdf
+  - 1.3.10: https://cosmologist.info/teaching/EU/ADC_Structure_formation2.pdf
+  - http://zuserver2.star.ucl.ac.uk/~hiranya/PHAS3136/PHAS3136/PHAS3136_files/Cosmo6_101112_cmbpower.pdf
+  - http://icc.ub.edu/~liciaverde/TALKS/cosmo6.pdf
+  - https://adh-sj.info/bao_cmb.php
+  - https://physics.stackexchange.com/questions/104010/connection-between-bao-und-cmb-spectrum

@@ -4,7 +4,7 @@
 
 Briefly explain the meaning of each of the six base cosmological parameters.
 
-They used flat prior to infer these six base parameters (the following description is according to 2.1 section in the paper):
+For the six base parameters in Table 1 (the following description is according to 2.1 section in the paper):
 
 1. Ωbh² : baryon density of the universe, defined as Ωb = ρb/ρcrit, where ρcrit is critical density. The h here defined as h ≡ H0 / (100 kms⁻¹ Mpc⁻¹).
 2. Ωch² : cold dark matter density.
@@ -12,6 +12,8 @@ They used flat prior to infer these six base parameters (the following descripti
 4. τ : optical depth at reionization.
 5. ln(10¹⁰ As): initial super-horizon amplitude of curvature perturbations (at k = 0.05 Mpc⁻¹).
 6. ns : primordial spectral index.
+
+Flat priors were applied on these parameters.
 
 ## Prob 2.1 : Install the code
 
@@ -33,7 +35,7 @@ enter the env by,
 pipenv shell
 ```
 
-Clone `CLASS`:
+Clone `CLASS`
 
 ```
 git clone https://github.com/lesgourg/class_public.git class
@@ -218,3 +220,127 @@ The matter-radiation equality happens later.
 So the general trend of power spectrum shifts to larger scales.
 
 Also, the free-streaming of the neutrino would suppress the growth of the structures in small scales.
+
+## Prob 2.6 The Matter Power Spectrum
+
+**a) Compute the linear theory matter power spectrum at z = 0 for the default cosmology**
+
+```bash
+python camb_matter_power.py
+
+# Sigma 8 is 0.82
+```
+
+Basically used the following lines to compute
+
+```python
+# compute linear spectrum
+results   = camb.get_results(params)
+kh, z, pk = results.get_matter_power_spectrum(
+    minkh=1e-4, maxkh=1, npoints=200)
+
+# get sigma8
+sigma_8 = results.get_sigma8()
+```
+
+![](images/matter_power.png)
+
+**b) Calculate σ 8 for this power spectrum using CAMB and explain what σ 8 means.**
+
+The σ8 is 0.82. The σ8 is the measure of amplitude on the linear power spectrum at scale of 8 h⁻¹Mpc.
+
+## Prob 2.7 The Linear Growth Function
+
+**a) Compute the linear theory matter power spectrum at z = 1, 2, 9 for the default cosmology.**
+
+Run,
+
+```bash
+python camb_linear_growth_function.py
+
+# Linear growth rate between z = 0.0 ~ 1.0 is 2.7261116656268225
+# Linear growth rate between z = 1.0 ~ 2.0 is 2.1162510300665964
+# Linear growth rate between z = 2.0 ~ 9.0 is 10.785505159886952
+```
+
+![](images/linear_growth.png)
+
+**b) Compute the linear growth function from z = 1 − 0, z = 2 − 1 and z = 9 − 2 by taking the ratio of the appropriate power spectra.**
+
+To take the ratio, I just doing this D = 1/N Σ ( Pk(z = z2) / Pk(z = z1) ).
+
+- Linear growth rate between z = 0.0 ~ 1.0 is  2.73
+- Linear growth rate between z = 1.0 ~ 2.0 is  2.19
+- Linear growth rate between z = 2.0 ~ 9.0 is 10.79
+
+**c) Compute the linear growth function between these redshifts analytically for a matter-dominated universe and a Λ-dominated universe.**
+
+TBD
+
+**d) Using Halofit, compute the non-linear matter power spectrum at z = 0, 1, 2, 9.**
+
+Just follow the prescription of CAMB:
+
+```python
+# compute non-linear power spectra
+params.NonLinear = camb.model.NonLinear_both
+results.calc_power_spectra(params)
+
+kh_nl, zs_nl, pks_nl = results.get_matter_power_spectrum(
+    minkh=1e-4, maxkh=1, npoints=200)
+```
+
+Run,
+
+```bash
+python camb_non_linear_spectrum.py
+```
+
+![](images/non_linear_matter_power.png)
+
+If we consider non-linear contribution to the structure, then there would be more small structures there in the universe.
+And the number of small structures would increase with the evolution of the universe; therefore, we find more power in the small scales for the lower redshifts.
+
+## Problem 2.8 Massive Neutrinos and the Matter Power Spectrum
+
+**a) Compute the linear theory matter power spectrum at z = 0 for the same massive neutrino cosmology as in Problem 2.5.**
+
+Run,
+
+```bash
+python camb_neutrino_matter_power.py
+
+# Default sigma_8 = 0.8199066677783182
+# Add neutrino, sigma_8 = 0.6801072173615291
+# Add neutrino, change Omega_cdm, sigma_8 = 0.6325463067013503
+```
+
+This is what I get,
+
+![](images/neutrino_matter_power.png)
+
+**b) Plot both matter power spectra and comment on the changes.**
+
+As shown in previous plot.
+
+On the largest scales, the perturbations basically are not affected by free-streaming neutrino, which implies the effect of neutrino could be considered similar to CDM.
+While there exists a power shift at large scales between change Ωcdm or not change it.
+This implies the large scales only depend on the fraction of matter in the universe instead of neutrino mass.
+
+On the small scale side, there's a noticeable suppression on the amplitude.
+This means the increasing amount of free-streaming neutrino would suppress the small structure growth, and reflects itself on the matter power spectrum.
+It makes sense since if we consider the matter power spectrum includes the neutrino,
+
+P(k) ∝ < |Ωcdm δcdm + Ωb δb + Ων δν| >.
+
+On the small scales, the current day δcdm and δb would be similar while δν would be smaller than δcdm (means no neutrino halo or cluster).
+In general, the power would be reduced.
+
+**c) Compute σ 8 for the massive neutrino cosmology.**
+
+- Default σ8 = 0.82
+- Add neutrino, σ8 = 0.68
+- Add neutrino, change Ωcdm, σ8 = 0.63
+
+## Problem 2.9 The Baryon Acoustic Oscillation Feature
+

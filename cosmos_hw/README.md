@@ -354,31 +354,51 @@ Run `python camb_bao.py`,
 I did not get the right scale.
 The first turn-over peak corresponds to ~0.017 h/Mpc ~ 0.01/Mpc ~ 2π / 0.01 Mpc = 628 Mpc, which is the horizon size at matter-radiation equality.
 The following wiggles should be BAO.
-Fit the wiggles by my eyes, I think,
 
-- The first wiggle ~ 125 Mpc
-- The second wiggle ~ 75 Mpc
+I tried to reproduce the plot (Fig 3) at https://cosmologist.info/teaching/EU/ADC_Structure_formation2.pdf,
+which is P(k)/P(k)_smooth versus k.
+In that plot the author used model with no baryon as P(k)_smooth,
+but in my plot I smoothed the P(k) using a hacky convolution window.
+See the right panel in the above plot.
 
-But the right scale for BAO is 150 Mpc.
+To get the scale of BAO, I argmax the region of first peak in the P(k)/P(k)_smooth plot.
+The BAO scale I got is 84 Mpc h⁻¹.
+In addition, the second peak is around 50 Mpc h⁻¹.
 
-And the peak in my plot is very unobvious, which implies I might do something wrong.
-
-I've spent 6 hours on this single question. I should move on.
+The correct scale for BAO is ~ 100 Mpc h⁻¹, which means I did not get the right scale for BAO.
 
 **b) Identify the same feature in the CMB power spectrum. What is the scale of this feature in comoving Mpc in the CMB?**
 
-- For first peak, L = scale = 1.4*10^4 Mpc * π/220 = 199 Mpc.
-- For second peak, L = scale = 1.4*10^4 Mpc * π/530 = 83 Mpc
+The l is approximated by,
+
+    l  ~ π / 𝛿θ;  
+    𝛿θ = d_sound_horizon(t_last_scattering) / d_particle_horizon(t_last_scattering);  
+    d_particle_horizon(t_last_scattering) = d_particle_horizon(t_0) / (1 + z);  
+
+So,
+
+    d_sound_horizon(t_last_scattering) * (1 + z) ~ d_particle_horizon(t_0) * π / l;  
+    ⇒ d_sound_horizon(t0)                        ~ d_particle_horizon(t_0) * π / l;
+
+- For first peak,  L = scale ~ 1.4*10^4 Mpc * π / 220 = 135 Mpc h⁻¹.
+- For second peak, L = scale ~ 1.4*10^4 Mpc * π / 530 = 56 Mpc h⁻¹.
+
+Since π / l is the angle of the scale at l.
+I just multiply the horizon size with that angle to get the scale.
 
 (1.4*10^4 is the particle horizon size)
 
+The above scales are also not quite agree with the scale I got from a).
+
+One possibility is that I've done something wrong, which is very possible.
+The other is that there're some intrinsic differences between CMB peaks and BAO peaks, according to https://www.cfa.harvard.edu/~deisenst/acousticpeak/acoustic_physics.html and https://www.cfa.harvard.edu/~deisenst/acousticpeak/spherical_acoustic.pdf :
+
+- Photons would be affected by gravitational redshifting, e.g., Sachs-Wolfe effect and Doppler shifts from bulk motion; however, matter would not be affected by those things.
+- The peak scale we got from CMB is the integration result of 2d slices on 3d spheres. The peak scale we got from 2d slices may not be the same as the scale we got from 3d spheres. According to the reference above, the CMB photons we got is just 20 Mpc slab of 150 Mpc (100 Mpc h⁻¹) radius shell.
+
 **c) Identify the same feature in the z = 1, 2, 9 matter power spectra, giving the scale in comoving Mpc at each redshift.**
 
-Fitted by my eyes, I think
-
-- for z = 1 : first wiggle ~ 125 Mpc
-- for z = 2 : first wiggle ~ 120 Mpc
-- for z = 9 : first wiggle ~ 110 Mpc
+See above figure, all of them are in the same scale, ~ 84 Mpc h⁻¹.
 
 **d) Explain why measuring the Baryon Acoustic Oscillation scale is useful for cosmology.**
 
@@ -390,13 +410,16 @@ It would help us to better constrain the accelerating expansion and the property
 Reference:
 
 - neutrino :
-  - https://arxiv.org/pdf/1309.5383.pdf 
+  - https://arxiv.org/pdf/1309.5383.pdf
   - https://arxiv.org/pdf/1212.6154.pdf
 - BAO :
+  - https://www.cfa.harvard.edu/~deisenst/acousticpeak/acoustic_physics.html
+  - https://www.cfa.harvard.edu/~deisenst/acousticpeak/spherical_acoustic.pdf
   - http://w.astro.berkeley.edu/~mwhite/bao/
   - https://arxiv.org/pdf/1105.1514.pdf
   - 1.3.10: https://cosmologist.info/teaching/EU/ADC_Structure_formation2.pdf
   - http://zuserver2.star.ucl.ac.uk/~hiranya/PHAS3136/PHAS3136/PHAS3136_files/Cosmo6_101112_cmbpower.pdf
   - http://icc.ub.edu/~liciaverde/TALKS/cosmo6.pdf
   - https://adh-sj.info/bao_cmb.php
+    - it has some cute animations, e.g., CMB could be made by lots of 150 Mpc circles: ![](https://adh-sj.info/bao_cmb_img/cmb_animation_5ms.gif)
   - https://physics.stackexchange.com/questions/104010/connection-between-bao-und-cmb-spectrum

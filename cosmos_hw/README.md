@@ -258,25 +258,37 @@ Run,
 ```bash
 python camb_linear_growth_function.py
 
-# Linear growth rate between z = 0.0 ~ 1.0 is 2.7261116656268225
-# Linear growth rate between z = 1.0 ~ 2.0 is 2.1162510300665964
-# Linear growth rate between z = 2.0 ~ 9.0 is 10.785505159886952
+# Linear growth rate between z = 0.0 ~ 1.0 is 1.6510940813977932
+# Linear growth rate between z = 1.0 ~ 2.0 is 1.4547340066371572
+# Linear growth rate between z = 2.0 ~ 9.0 is 3.284129284892261
 ```
 
 ![](images/linear_growth.png)
 
 **b) Compute the linear growth function from z = 1 − 0, z = 2 − 1 and z = 9 − 2 by taking the ratio of the appropriate power spectra.**
 
-To take the ratio, I just doing this D = 1/N Σ ( Pk(z = z2) / Pk(z = z1) ).
+To take the ratio, I just doing this D = √( 1/N Σ (Pk(z = z2) / Pk(z = z1)) ).
 
-- Linear growth rate between z = 0.0 ~ 1.0 is  2.73
-- Linear growth rate between z = 1.0 ~ 2.0 is  2.19
-- Linear growth rate between z = 2.0 ~ 9.0 is 10.79
+- Linear growth rate between z = 0.0 ~ 1.0 is  1.65
+- Linear growth rate between z = 1.0 ~ 2.0 is  1.45
+- Linear growth rate between z = 2.0 ~ 9.0 is  3.28
 
 **c) Compute the linear growth function between these redshifts analytically for a matter-dominated universe and a Λ-dominated universe.**
 
 <img src="images/IMG_4927.jpg" width=600>
-<!-- ![](images/IMG_4927.jpg) -->
+
+- Matter-DOM
+  - Linear growth rate between z = 0.0 ~ 1.0 is  2
+  - Linear growth rate between z = 1.0 ~ 2.0 is  1.5
+  - Linear growth rate between z = 2.0 ~ 9.0 is  3.33
+- Λ-DOM
+  - Linear growth rate between z = 0.0 ~ 1.0 is  1
+  - Linear growth rate between z = 1.0 ~ 2.0 is  1
+  - Linear growth rate between z = 2.0 ~ 9.0 is  1
+
+The growth between z = 0.0 ~ 1.0 doesn't quite match the value I got from b).
+But if we consider today is the transition between matter-DOM and Λ-DOM,
+it would explain why the value I got from b) is between matter-DOM and Λ-DOM.
 
 **d) Using Halofit, compute the non-linear matter power spectrum at z = 0, 1, 2, 9.**
 

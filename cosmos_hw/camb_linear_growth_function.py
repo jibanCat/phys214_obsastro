@@ -32,7 +32,7 @@ for i, (z, pk) in enumerate(zip(zs, pks)):
     ax.set_ylabel(r'$P_k$ $h^{-3}Mpc^{3}$')
 
     if i < len(zs) - 1:
-        linear_growth = (pks[i, :] / pks[i + 1, :]).mean()
+        linear_growth = np.sqrt( (pks[i, :] / pks[i + 1, :]).mean() )
 
         print("Linear growth rate between z = {} ~ {} is {}".format(
             zs[i], zs[i + 1], linear_growth

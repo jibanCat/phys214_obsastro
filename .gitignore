@@ -249,6 +249,7 @@ Exercise1.pdf
 # exception
 !aver2.fits
 !small_res.fits
+!Landolt_95V.fits
 
 # pyraf craps
 pyraf/

@@ -435,3 +435,14 @@ Reference:
   - https://adh-sj.info/bao_cmb.php
     - it has some cute animations, e.g., CMB could be made by lots of 150 Mpc circles: ![](https://adh-sj.info/bao_cmb_img/cmb_animation_5ms.gif)
   - https://physics.stackexchange.com/questions/104010/connection-between-bao-und-cmb-spectrum
+
+## Corrections
+
+According the feedback from the instructor,
+the discrepancy between my BAO peaks and 100 Mpc h⁻¹ is because the width of BAO peak is nonzero.
+So the peak position would not be just 2π / k.
+
+For CMB part, use l + 1/2 instead of l.
+
+    l  ~ π / 𝛿θ;  
+    ⇒ d_sound_horizon(t0)                        ~ d_particle_horizon(t_0) * π / (l + 1/2);

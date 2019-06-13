@@ -446,3 +446,34 @@ For CMB part, use l + 1/2 instead of l.
 
     l  ~ π / 𝛿θ;  
     ⇒ d_sound_horizon(t0)                        ~ d_particle_horizon(t_0) * π / (l + 1/2);
+
+## (Review) Problem Set 1 : Steady State Universe
+
+If we are in a steady state universe, compute what's the percentage of the energy at the CMB frequency is actually from photons created over the time and redshifted from higher frequencies?
+Does it converge as you increase the time period to include the entire history of the universe?
+
+```python
+python steady_state_univ.py
+
+# percentage of the energy at the current CMB frequency 
+# would in fact be from photons created over this time period and 
+# redshifted from higher frequencies is 1.794087912341404 > 1.
+```
+
+I still feel the calculation is weird since the lower bound and upper bound set by the instructor are `a = (1, 7.2)`.
+So the meaning of the integration result means the percentage of the energy at the current CMB frequency created from `a = 1` to `a = 7.2` comparing to `a = 7.2`.
+
+Here is the integration:
+
+```python
+# CMB parameters
+nu_max = 5.8 * 10**10 * 2.7 # Hz, from Wien's law
+T_cmb  = 2.715
+a_f    = (370)**(1/3)       # from (current photon density)^3 / a_f^3 = 1,
+                            # this is the estimate of a_f for dropping photo density to 1 photon/cm^3
+
+maxwell_eq = lambda nu, T : 2 * h * nu**3 / c**3 /( np.exp( h * nu / k / T ) - 1)
+
+E_over_the_time =  quad(
+    lambda a : maxwell_eq( nu_max * a / a_f, T_cmb * a / a_f ), 1, a_f )[0]
+```
